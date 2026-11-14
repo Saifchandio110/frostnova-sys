@@ -30,6 +30,8 @@ window.FROSTNOVA = {
     ]
   }],
   /* Placeholder slots only. Not artwork. Add src and credit when real client files arrive.
+     Optional per item: alt (image description), credit (artist name). Example real entry:
+     { id: "art-1", title: "Name", category: "character", src: "assets/artwork/name.jpg", alt: "…", credit: "Artist", size: "w3 h3" }
      size = mosaic layout hint, e.g. "w3 h3" (3 columns wide, 3 rows tall). */
   artwork: [
     { id: "slot-1", title: "Character art slot", category: "character", src: null, credit: null, size: "w3 h3" },

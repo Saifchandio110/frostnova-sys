@@ -12,11 +12,6 @@
         "<div><h3>" + esc(r.title) + "</h3><p>" + esc(r.note) + " · " + esc(r.date) + '</p><a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">Buy on Bandcamp</a><a class="btn alt" href="#releases">Open releases</a></div></div></section>' +
         slot("Frostnova.sys character art", "tall") + "</div>";
     },
-    gallery: function () {
-      return "<h2>Artwork</h2>" + '<div class="mosaic">' + C.artwork.map(function (a) {
-        return a.src ? '<img class="' + a.size + '" src="' + esc(a.src) + '" alt="' + esc(a.title) + '" loading="lazy">' : slot(a.title, a.size);
-      }).join("") + "</div>" + '<p class="note">Placeholder slots. Real artwork and artist credits come from the client; the image viewer arrives in Phase 5.</p>';
-    },
     links: function () {
       return "<h2>Links</h2>" + '<ul class="linklist">' + C.links.map(function (l) {
         return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "<span>open</span></a></li>";

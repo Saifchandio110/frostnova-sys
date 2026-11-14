@@ -70,3 +70,10 @@ a{color:var(--cyan)}
 .about{max-width:64ch;margin-bottom:18px}.about h3{font-size:16px;color:var(--cyan)}
 button.chip{background:none;border:0;font:inherit;color:var(--dim);cursor:pointer;min-height:44px;padding:0 4px}
 button.chip:hover{color:var(--text)}
+.filters{margin-bottom:12px}.filter{margin-top:0}.filter[aria-pressed="true"]{background:var(--cyan);color:var(--bg)}
+.art-wrap{min-height:0}.art-wrap[hidden]{display:none}
+.art{display:block;width:100%;height:100%;padding:0;border:1px solid var(--line);background:none;cursor:zoom-in}
+.art:hover{border-color:var(--cyan)}.art img{display:block;width:100%;height:100%;object-fit:cover}
+.lightbox{position:fixed;inset:0;z-index:90;background:rgba(5,8,10,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px}
+.lightbox[hidden]{display:none}.lightbox img{max-width:100%;max-height:70vh;object-fit:contain;border:1px solid var(--line)}
+.lightbox p{color:var(--dim);text-align:center;max-width:60ch}
