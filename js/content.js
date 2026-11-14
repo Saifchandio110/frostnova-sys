@@ -18,6 +18,8 @@ window.FROSTNOVA = {
     id: "photonic-cascade", title: "Photonic Cascade", date: "2025-12-25", status: "released",
     cover: null, /* e.g. "assets/albums/photonic-cascade.jpg" once the client supplies the file */
     note: "First EP with bonus tracks", bandcampAlbumId: 1282519899,
+    description: null, /* release text from the client */
+    streaming: [], /* extra links: { label: "Tidal", url: "..." } */
     url: "https://frostnovasys.bandcamp.com/album/photonic-cascade",
     tracks: [
       { title: "Abject Mechanism", time: "3:39", url: "https://frostnovasys.bandcamp.com/track/abject-mechanism" },
@@ -37,6 +39,10 @@ window.FROSTNOVA = {
     { id: "slot-5", title: "Character art slot", category: "character", src: null, credit: null, size: "w2 h2" },
     { id: "slot-6", title: "Concept art slot", category: "concept", src: null, credit: null, size: "w2" }
   ],
+  /* Videos: { title, youtubeId: "abc123" } to embed, or { title, url } for an external link. */
+  videos: [],
+  /* About text: null shows a marked placeholder. Replace null with Sara's own words in quotes. */
+  about: { intro: null, background: null, journey: null, meaning: null, philosophy: null, identity: null },
   links: [
     { label: "Bandcamp", url: "https://frostnovasys.bandcamp.com/album/photonic-cascade" },
     { label: "Bluesky", url: "https://bsky.app/profile/frostnova.tech" },

@@ -1,10 +1,10 @@
 /* Navigation + panel rendering. Panels are built from content.js. Later phases add one render function per section. */
 (function () {
   var C = window.FROSTNOVA, view = document.getElementById("viewport"), nav = document.getElementById("nav");
-  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
-  var slot = function (txt, cls) { return '<div class="slot ' + (cls || "") + '" role="img" aria-label="Placeholder: ' + esc(txt) + '">' + esc(txt) + ' · awaiting file</div>'; };
+  var esc = FN.esc, slot = FN.slot;
   var cover = function (r) { return r.cover ? '<img src="' + esc(r.cover) + '" alt="' + esc(r.title) + ' cover" loading="lazy">' : slot("cover"); };
-  var panels = {
+  var panels = FN.panels;
+  Object.assign(panels, {
     home: function () {
       var r = C.releases[0];
       return "<h1>" + esc(C.artist.name) + '</h1><div class="manifesto">' + C.manifesto.map(function (l) { return "<p>" + esc(l) + "</p>"; }).join("") + "</div>" +
@@ -22,7 +22,7 @@
         return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "<span>open</span></a></li>";
       }).join("") + "</ul>";
     }
-  };
+  });
   var pending = { music: "Music player", releases: "Release library", videos: "Videos and streaming", about: "About" };
   function render(id) {
     if (!C.nav.some(function (n) { return n.id === id; })) id = "home";
