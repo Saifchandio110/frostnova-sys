@@ -40,7 +40,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  window.recolor=()=>{const a=document.body.classList.contains('ov'),c=a?0xffb35c:0x6ff5e0;edge.color.setHex(c);hm.color.setHex(c);hv1.material.color.setHex(a?0xff8a3d:0x7a55ff);pm.color.setHex(c);vis.emissive.setHex(a?0xff8a3d:0x7a55ff)};
  window.setPose=s=>{pos.set(...s.cam);look.set(...s.look);kick=1};
  const ms=new THREE.Vector2(),rc=new THREE.Raycaster();let hv=null,pulse=0,kick=0;
- st.addEventListener('pointermove',e=>{const b=st.getBoundingClientRect();ms.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1)});
+ ['pointermove','pointerdown'].forEach(n=>st.addEventListener(n,e=>{const b=st.getBoundingClientRect();ms.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1)}));
  st.addEventListener('click',e=>{if(e.target!==cv)return;if(hv){pulse=1;toast(hv===head||hv.geometry.type!=='PlaneGeometry'?'UNIT 07 // FROSTNOVA.SYS CORE RESPONDS':'HOLO NODE // DATA SLOT EMPTY')}});
  function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.fov=w/h<.9?60:42;cam.updateProjectionMatrix()}
  new ResizeObserver(size).observe(st);size();
