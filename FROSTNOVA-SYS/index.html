@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frostnova.sys</title>
+<meta name="description" content="Frostnova.sys: music, releases, artwork and links.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a class="skip" href="#viewport">Skip to content</a>
+<div class="cockpit">
+  <header class="status" aria-label="System status">
+    <span class="brand">frostnova.sys</span>
+    <span class="chip" id="chip-sys"><i class="dot ok"></i>core online</span>
+    <span class="chip hide-s"><i class="dot warn"></i>audio standby</span>
+    <span class="chip hide-s" id="chip-clock">--:--:--</span>
+    <span class="chip" id="chip-node">node: home</span>
+  </header>
+
+  <nav class="rail" id="nav" aria-label="Main navigation"></nav>
+
+  <main class="viewport" id="viewport" tabindex="-1" aria-live="polite"></main>
+
+  <aside class="telemetry" aria-label="Telemetry">
+    <p class="t-title">signal</p>
+    <div class="bars" id="bars" aria-hidden="true"></div>
+    <p class="t-title">log</p>
+    <ul class="log" id="log"></ul>
+  </aside>
+</div>
+<script src="js/content.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

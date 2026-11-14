@@ -1,0 +1,58 @@
+/* Frostnova.sys: core cockpit. Colours and fonts live in :root, change them here only. */
+:root{
+  --bg:#05080a; --panel:#0a1216; --line:#1b3b35; --text:#c3ebd9; --dim:#7ba596;
+  --green:#3dff9a; --cyan:#4fd8ee; --orange:#ff8a2a; --red:#ff3b4a; --purple:#9b6bff;
+  --mono:ui-monospace,"Cascadia Mono","SF Mono",Menlo,Consolas,monospace;
+  /* Display face: Mincho-style serif (Evangelion title cards). Self-hosted font slot: assets/fonts */
+  --display:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP","Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font:15px/1.6 var(--mono);overflow:hidden;
+  background-image:repeating-linear-gradient(0deg,rgba(61,255,154,.035) 0 1px,transparent 1px 3px)}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;z-index:9;background:var(--bg);padding:6px}
+.cockpit{height:100%;display:grid;gap:10px;padding:10px;
+  grid-template:"top top top" auto "rail view tele" 1fr / 190px 1fr 210px}
+.status{grid-area:top;display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:8px;font-size:12px}
+.brand{color:var(--green);margin-right:auto;letter-spacing:.08em}
+.chip{display:flex;align-items:center;gap:6px;color:var(--dim)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dim)}
+.dot.ok{background:var(--green)}.dot.warn{background:var(--orange)}
+.rail{grid-area:rail;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);padding-right:10px}
+.rail a{display:flex;justify-content:space-between;padding:10px 8px;color:var(--dim);text-decoration:none;
+  border-left:3px solid transparent;min-height:44px;align-items:center}
+.rail a:hover{color:var(--text);background:var(--panel)}
+.rail a[aria-current="page"]{color:var(--green);border-left-color:var(--green);background:var(--panel)}
+.rail small{color:var(--dim);opacity:.6}
+.viewport{grid-area:view;overflow:auto;border:1px solid var(--line);background:var(--panel);padding:clamp(16px,3vw,36px);outline:0;
+  clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+.viewport h1,.viewport h2{font-family:var(--display);font-weight:800;line-height:1.05}
+.viewport h1{font-size:clamp(40px,8vw,92px);color:var(--green)}
+.viewport h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+.manifesto{margin:18px 0 26px;max-width:46ch;color:var(--dim)}
+.manifesto p+p{margin-top:6px}
+.home{display:grid;gap:26px;grid-template-columns:1.3fr 1fr;align-items:start}
+.slot{border:1px dashed var(--line);background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(79,216,238,.07) 9px 10px);
+  display:flex;align-items:flex-end;padding:10px;color:var(--dim);font-size:12px;min-height:120px}
+.slot.tall{aspect-ratio:3/4}
+.release{display:grid;grid-template-columns:96px 1fr;gap:14px;border:1px solid var(--line);padding:12px;margin-top:8px}
+.release .slot{aspect-ratio:1;min-height:0;padding:4px;font-size:10px}
+.release h3{font-size:16px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;margin:8px 8px 0 0;border:1px solid var(--green);
+  color:var(--green);text-decoration:none;background:transparent;font:inherit;cursor:pointer}
+.btn:hover{background:var(--green);color:var(--bg)}
+.btn.alt{border-color:var(--cyan);color:var(--cyan)}.btn.alt:hover{background:var(--cyan);color:var(--bg)}
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:90px;gap:8px}
+.mosaic .slot,.mosaic img{min-height:0;width:100%;height:100%;object-fit:cover}
+.w2{grid-column:span 2}.w3{grid-column:span 3}.w4{grid-column:span 4}.h2{grid-row:span 2}.h3{grid-row:span 3}
+.linklist{list-style:none;padding:0}
+.linklist li{border-bottom:1px solid var(--line)}
+.linklist a{display:flex;justify-content:space-between;padding:12px 0;min-height:44px;text-decoration:none}
+.note{color:var(--orange);border-left:3px solid var(--orange);padding-left:12px;margin-top:16px;max-width:52ch}
+.telemetry{grid-area:tele;border-left:1px solid var(--line);padding-left:10px;font-size:12px;color:var(--dim);overflow:hidden}
+.t-title{color:var(--cyan);margin:6px 0}
+.bars{display:flex;gap:3px;align-items:flex-end;height:60px}
+.bars i{flex:1;background:var(--cyan);opacity:.7;min-height:3px}
+.log{list-style:none;padding:0}.log li{padding:3px 0}
