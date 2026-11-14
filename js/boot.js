@@ -13,6 +13,7 @@
     el.classList.add("out"); setTimeout(function () { el.remove(); }, calm ? 0 : 400);
     document.removeEventListener("keydown", done);
     document.getElementById("viewport").focus({ preventScroll: true });
+    document.dispatchEvent(new Event("fn:entered"));
     if (window.FN && FN.sound) FN.sound.play("boot");
   }
   function next() { if (i >= lines.length) { t = setTimeout(done, calm ? 0 : 300); return; } log.textContent += lines[i++] + "\n"; t = setTimeout(next, calm ? 0 : 340); }
