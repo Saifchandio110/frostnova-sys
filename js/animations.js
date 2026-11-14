@@ -14,4 +14,13 @@
     else r.style.transform = "translate(" + e.clientX + "px," + e.clientY + "px)";
   });
   document.addEventListener("pointerover", function (e) { r.classList.toggle("hot", !!e.target.closest("a,button")); });
+  /* 3D tilt: the cockpit leans a few degrees toward the pointer (large screens only). */
+  var cock = document.querySelector(".cockpit"), busy = false;
+  if (window.innerWidth > 1100) document.addEventListener("pointermove", function (e) {
+    if (busy) return; busy = true;
+    requestAnimationFrame(function () {
+      cock.style.setProperty("--ry", ((e.clientX / innerWidth - 0.5) * 6).toFixed(2) + "deg");
+      cock.style.setProperty("--rx", ((0.5 - e.clientY / innerHeight) * 4).toFixed(2) + "deg"); busy = false;
+    });
+  });
 })();

@@ -1,0 +1,34 @@
+/* Visual theme layer: 3D cyberpunk look. Delete this file (and its <link>) to return to the flat Phase 2 style.
+   Depth comes from CSS 3D only: a moving perspective grid floor, a tilting cockpit and layered panels. */
+.world{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.world::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(155,107,255,.28),transparent 55%),radial-gradient(circle at 50% 100%,rgba(255,138,42,.14),transparent 30%)}
+.world::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,#000 100%)} /* vignette */
+.floor{position:absolute;left:-60%;right:-60%;bottom:0;height:55vh;overflow:hidden;transform-origin:50% 100%;transform:perspective(420px) rotateX(64deg);
+  -webkit-mask-image:linear-gradient(to top,#000 10%,transparent 92%);mask-image:linear-gradient(to top,#000 10%,transparent 92%)}
+.floor::before{content:"";position:absolute;left:0;right:0;top:-64px;bottom:0;will-change:transform;animation:flow 1.8s linear infinite;
+  background-image:linear-gradient(rgba(79,216,238,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(155,107,255,.5) 1px,transparent 1px);background-size:64px 64px}
+@keyframes flow{to{transform:translateY(64px)}}
+
+.cockpit{transform-style:preserve-3d;transform:perspective(1500px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.status{transform:translateZ(46px);border-bottom-color:rgba(79,216,238,.4)}
+.rail,.telemetry{transform:translateZ(28px)}
+.viewport{background:linear-gradient(var(--glass),var(--glass)),
+  linear-gradient(var(--green),var(--green)) 0 0/38px 2px no-repeat,linear-gradient(var(--green),var(--green)) 0 0/2px 38px no-repeat,
+  linear-gradient(var(--cyan),var(--cyan)) 100% 100%/38px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) 100% 100%/2px 38px no-repeat;
+  border-color:rgba(61,255,154,.35)}
+:root{--glass:rgba(7,13,17,.9)}
+.brand{text-shadow:0 0 10px rgba(61,255,154,.7)}
+.rail a{clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%);border-left-width:4px}
+.rail a[aria-current="page"]{background:linear-gradient(90deg,rgba(61,255,154,.22),transparent);text-shadow:0 0 8px rgba(61,255,154,.8)}
+.rail a:hover{background:linear-gradient(90deg,rgba(79,216,238,.16),transparent)}
+.viewport h1{text-shadow:2px 0 var(--purple),-2px 0 var(--cyan),0 0 24px rgba(61,255,154,.45);animation:glitch 7s infinite}
+@keyframes glitch{0%,91%,100%{transform:none}93%{transform:translateX(-4px) skewX(-6deg);text-shadow:-5px 0 var(--red),5px 0 var(--cyan)}95%{transform:translateX(4px)}97%{transform:none}}
+.viewport h2{text-shadow:0 0 12px rgba(79,216,238,.35)}
+.slot,.release,.embed{border-color:rgba(79,216,238,.4)}
+.btn{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));box-shadow:inset 0 0 12px rgba(61,255,154,.15)}
+.bars i{box-shadow:0 0 8px var(--cyan)}
+.boot::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--cyan);box-shadow:0 0 18px var(--cyan);animation:sweep 1.6s linear infinite}
+@keyframes sweep{from{top:0}to{top:100%}}
+/* Tablet and phone: keep the world, drop the tilt (performance and touch) */
+@media (max-width:1100px){.cockpit,.status,.rail,.telemetry{transform:none;transform-style:flat}.floor{height:40vh}}
+@media (max-width:720px){.viewport h1{animation-duration:9s}.rail a{clip-path:none}}
