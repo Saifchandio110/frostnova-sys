@@ -4,3 +4,9 @@
 .dot.ok{animation:pulse 2.4s infinite}
 @keyframes pulse{50%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.has-gsap .viewport.swap{animation:none}
+.boot{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-content:center;justify-items:start;gap:16px;padding:24px;transition:opacity .4s}
+.boot.out{opacity:0;pointer-events:none}
+.boot-log{color:var(--green);font:14px/1.8 var(--mono);min-height:9em}
+.reticle{position:fixed;left:-14px;top:-14px;width:28px;height:28px;border:1px solid var(--green);border-radius:50%;pointer-events:none;z-index:50;opacity:.7;transition:border-color .15s,background .15s}
+.reticle.hot{border-color:var(--orange);background:rgba(255,138,42,.15)}
