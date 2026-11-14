@@ -1,6 +1,0 @@
-/* Phase 2 keeps motion minimal. Boot sequence and transitions arrive in Phase 4. */
-.viewport.swap{animation:swap .22s ease-out}
-@keyframes swap{from{opacity:.2;transform:translateX(8px)}to{opacity:1;transform:none}}
-.dot.ok{animation:pulse 2.4s infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
