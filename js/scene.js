@@ -31,9 +31,12 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  part(new THREE.CylinderGeometry(2.3,2.5,.2,6),dark,0,-.7,0);
  const holo=new THREE.Group();sc.add(holo);
  const orb=new THREE.Group();sc.add(orb);for(let i=0;i<8;i++){const m=new THREE.Mesh(new THREE.OctahedronGeometry(.08+Math.random()*.06),mid),a=i/8*6.283;m.position.set(Math.cos(a)*3.2,.2+Math.random()*1.8,Math.sin(a)*3.2);m.add(new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),edge));orb.add(m)}
+ part(new THREE.BoxGeometry(.08,.55,.7),mid,0,2.3,-.05,-.3,0,0);
+ [-1,1].forEach(s=>{halo(0xff8a3d,.6,s*1.65,.9,.2);halo(0x6ff5e0,.45,s*1.7,-.25,.12);part(new THREE.BoxGeometry(.14,.3,.5),vis,s*.95,1.35,.45,0,s*.4,0)});
  const hm=new THREE.MeshBasicMaterial({color:0x6ff5e0,transparent:true,opacity:.5,blending:THREE.AdditiveBlending});
  const ring=(r,t,s,y,z)=>{const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,4,s),hm);m.position.set(0,y,z);holo.add(m);return m};
  const r1=ring(2.8,.012,120,1,-1),r2=ring(3.1,.03,36,1,-1.2),scan=ring(1.9,.012,90,0,0);scan.rotation.x=Math.PI/2;
+ const hl=new THREE.Mesh(new THREE.TorusGeometry(1.35,.02,4,6),hm);hl.position.set(0,1.65,-.8);mech.add(hl);
  const TL=[['AUDIO',1],['VISUAL',3],['VIDEO',4]];
  const tags=[[-2.6,1.8,.8],[2.7,.9,.6],[-2.3,.2,1.2]].map((p,i)=>{const g=new THREE.PlaneGeometry(1.1,.5),c=document.createElement('canvas');c.width=256;c.height=116;const x=c.getContext('2d');x.fillStyle='rgba(111,245,224,.95)';x.font='600 34px sans-serif';x.textAlign='center';x.fillText(TL[i][0],128,70);const lm=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false})),m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:0x6ff5e0,transparent:true,opacity:.1,side:2}));lm.position.z=.01;m.add(lm);m.add(new THREE.LineSegments(new THREE.EdgesGeometry(g),edge));m.position.set(...p);m.userData.p=p;m.userData.go=TL[i][1];sc.add(m);hit.push(m);return m});
  const grid=new THREE.GridHelper(14,28,0x6ff5e0,0x6ff5e0);grid.position.y=-.8;grid.material.transparent=true;grid.material.opacity=.12;sc.add(grid);
@@ -52,11 +55,11 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  function tick(){if(!on)return;requestAnimationFrame(tick);const nw=performance.now(),dd=nw-lt;lt=nw;slow=dd>34?slow+1:Math.max(0,slow-1);if(slow>90&&R.getPixelRatio()>1){R.setPixelRatio(1);size()}const t=clock.getElapsedTime()*sp,dt=Math.min(clock.getDelta(),.05);
   mech.position.y=Math.sin(t*1.1)*.07;mech.rotation.y+=((ms.x*.35)-mech.rotation.y)*.05;head.rotation.x=ms.y*-.08;
   r1.rotation.z=t*.15;r2.rotation.z=-t*.1;scan.position.y=1+Math.sin(t*.8)*1.5;holo.children.forEach(m=>m.material.opacity=.45);
-  cr.rotation.y=t*2;core.emissiveIntensity=.8+Math.sin(t*3)*.4+pulse*2;vis.emissiveIntensity=.8+pulse*2+(hv===head?.8:0);pulse*=.94;hv1.material.opacity=.55+Math.sin(t*2)*.1+pulse*.4;hv2.material.opacity=.5+Math.sin(t*3)*.25;orb.rotation.y=t*.2;
+  cr.rotation.y=t*2;core.emissiveIntensity=.8+Math.sin(t*3)*.4+pulse*2;vis.emissiveIntensity=.8+pulse*2+(hv===head?.8:0);pulse*=.94;hl.rotation.z=t*.3;hv1.material.opacity=.55+Math.sin(t*2)*.1+pulse*.4;hv2.material.opacity=.5+Math.sin(t*3)*.25;orb.rotation.y=t*.2;
   tags.forEach((m,i)=>{m.position.y=m.userData.p[1]+Math.sin(t+i*2)*.12;m.lookAt(cam.position);m.material.opacity=hv===m?.35:.1});
-  const a=pg.attributes.position;for(let i=1;i<N*3;i+=3){a.array[i]+=.004*sp;if(a.array[i]>4)a.array[i]=-4}a.needsUpdate=true;
+  const a=pg.attributes.position;for(let i=1;i<N*3;i+=3){a.array[i]+=.004*sp*(1+kick*10);if(a.array[i]>4)a.array[i]=-4}a.needsUpdate=true;
   rc.setFromCamera(ms,cam);const h=rc.intersectObjects(hit,false)[0];hv=h?h.object:null;cv.style.cursor=hv?'pointer':'default';
   cam.position.lerp(new THREE.Vector3(pos.x+ms.x*.5,pos.y+ms.y*.3,pos.z),.045);lk.lerp(look,.05);
-  if(kick>.01){kick*=.93;cam.fov=(cam.aspect<.9?60:42)+kick*7;cam.updateProjectionMatrix();cam.up.set(Math.sin(kick*.12),1,0);scan.scale.setScalar(1+kick*.3)}else cam.up.set(0,1,0);
+  if(kick>.01){kick*=.93;cam.fov=(cam.aspect<.9?60:42)+kick*7;cam.updateProjectionMatrix();cam.up.set(Math.sin(kick*.12),1,0);scan.scale.setScalar(1+kick*.3);l1.intensity=1.6+kick*2}else cam.up.set(0,1,0);
   cam.lookAt(lk);R.render(sc,cam)}
  tick()}
