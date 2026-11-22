@@ -21,3 +21,8 @@ Konami code or codes `SARA` (hidden gallery slot), `FROSTNOVA` / `NOVA` (amber t
 
 ## Needs client assets
 Cover art, track titles and audio, artwork and credits, video embeds, biography, social and contact links.
+
+## Extras
+- `js/sound.js`: optional UI blips (SOUND toggle in header, off by default).
+- Extra secret codes: `SUNRISE` (amber), `HORIZON` (message), `FROST` (ice theme). Edit in `C.codes`.
+- If 3D fails, the site still runs in simplified mode.
