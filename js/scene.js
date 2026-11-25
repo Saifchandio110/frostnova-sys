@@ -48,7 +48,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  const ms=new THREE.Vector2(),rc=new THREE.Raycaster();let hv=null,pulse=0,kick=0,fit=1;
  ['pointermove','pointerdown'].forEach(n=>st.addEventListener(n,e=>{const b=st.getBoundingClientRect();ms.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1)}));
  st.addEventListener('click',e=>{if(e.target!==cv)return;if(hv){pulse=1;if(hv.userData.go)go(hv.userData.go);else toast('UNIT 07 // FROSTNOVA.SYS CORE RESPONDS')}});
- function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;fit=cam.aspect<1?Math.max(1,.83/cam.aspect):1;cam.fov=cam.aspect<1?50:42;cam.updateProjectionMatrix()}
+ function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;fit=cam.aspect<1?Math.max(1,1.2/cam.aspect):1;sc.fog.density=.06/fit;cam.fov=cam.aspect<1?50:42;cam.updateProjectionMatrix()}
  new ResizeObserver(size).observe(st);size();
  let on=true;document.addEventListener('visibilitychange',()=>{on=!document.hidden;if(on)tick()});
  const clock=new THREE.Clock();let lt=performance.now(),slow=0;
@@ -59,7 +59,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
   tags.forEach((m,i)=>{m.position.y=m.userData.p[1]+Math.sin(t+i*2)*.12;m.lookAt(cam.position);m.material.opacity=hv===m?.35:.1});
   const a=pg.attributes.position;for(let i=1;i<N*3;i+=3){a.array[i]+=.004*sp*(1+kick*10);if(a.array[i]>4)a.array[i]=-4}a.needsUpdate=true;
   rc.setFromCamera(ms,cam);const h=rc.intersectObjects(hit,false)[0];hv=h?h.object:null;cv.style.cursor=hv?'pointer':'default';
-  const por=cam.aspect<1&&cur>0?-1.7:0,tp=pos.clone().sub(look).multiplyScalar(fit).add(look);cam.position.lerp(new THREE.Vector3(tp.x+ms.x*.5,tp.y+ms.y*.3+por,tp.z),.045);lk.lerp(new THREE.Vector3(look.x,look.y+por,look.z),.05);
+  const por=cam.aspect<1&&cur>0?-1.7*fit:0,tp=pos.clone().sub(look).multiplyScalar(fit).add(look);cam.position.lerp(new THREE.Vector3(tp.x+ms.x*.5,tp.y+ms.y*.3+por,tp.z),.045);lk.lerp(new THREE.Vector3(look.x,look.y+por,look.z),.05);
   if(kick>.01){kick*=.93;cam.fov=(cam.aspect<1?50:42)+kick*7;cam.updateProjectionMatrix();cam.up.set(Math.sin(kick*.12),1,0);scan.scale.setScalar(1+kick*.3);l1.intensity=1.6+kick*2}else cam.up.set(0,1,0);
   cam.lookAt(lk);R.render(sc,cam)}
  tick()}
