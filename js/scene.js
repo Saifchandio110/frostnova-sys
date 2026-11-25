@@ -43,12 +43,12 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  const beam=new THREE.Mesh(new THREE.CylinderGeometry(1.5,2.3,6,32,1,true),new THREE.MeshBasicMaterial({color:0x6ff5e0,transparent:true,opacity:.05,side:2,blending:THREE.AdditiveBlending,depthWrite:false}));beam.position.y=2.2;sc.add(beam);
  const N=low?220:900,pg=new THREE.BufferGeometry(),pa=new Float32Array(N*3);for(let i=0;i<N*3;i++)pa[i]=(Math.random()-.5)*(i%3==1?8:16);
  pg.setAttribute('position',new THREE.BufferAttribute(pa,3));const pm=new THREE.PointsMaterial({color:0x6ff5e0,size:.035,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false});sc.add(new THREE.Points(pg,pm));
- window.recolor=()=>{const a=document.body.classList.contains('ov'),c=a?0xffb35c:0x6ff5e0;edge.color.setHex(c);hm.color.setHex(c);hv1.material.color.setHex(a?0xff8a3d:0x7a55ff);beam.material.color.setHex(c);pm.color.setHex(c);vis.emissive.setHex(a?0xff8a3d:0x7a55ff)};
+ window.recolor=()=>{const a=document.body.classList.contains('ov'),ic=document.body.classList.contains('ice'),c=a?0xffb35c:ic?0xb8d8ff:0x6ff5e0;edge.color.setHex(c);hm.color.setHex(c);hv1.material.color.setHex(a?0xff8a3d:0x7a55ff);beam.material.color.setHex(c);pm.color.setHex(c);vis.emissive.setHex(a?0xff8a3d:0x7a55ff)};
  window.setPose=s=>{pos.set(...s.cam);look.set(...s.look);kick=1};
- const ms=new THREE.Vector2(),rc=new THREE.Raycaster();let hv=null,pulse=0,kick=0;
+ const ms=new THREE.Vector2(),rc=new THREE.Raycaster();let hv=null,pulse=0,kick=0,fit=1;
  ['pointermove','pointerdown'].forEach(n=>st.addEventListener(n,e=>{const b=st.getBoundingClientRect();ms.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1)}));
  st.addEventListener('click',e=>{if(e.target!==cv)return;if(hv){pulse=1;if(hv.userData.go)go(hv.userData.go);else toast('UNIT 07 // FROSTNOVA.SYS CORE RESPONDS')}});
- function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.fov=w/h<.9?60:42;cam.updateProjectionMatrix()}
+ function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;fit=cam.aspect<1?Math.max(1,.83/cam.aspect):1;cam.fov=cam.aspect<1?50:42;cam.updateProjectionMatrix()}
  new ResizeObserver(size).observe(st);size();
  let on=true;document.addEventListener('visibilitychange',()=>{on=!document.hidden;if(on)tick()});
  const clock=new THREE.Clock();let lt=performance.now(),slow=0;
@@ -59,7 +59,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
   tags.forEach((m,i)=>{m.position.y=m.userData.p[1]+Math.sin(t+i*2)*.12;m.lookAt(cam.position);m.material.opacity=hv===m?.35:.1});
   const a=pg.attributes.position;for(let i=1;i<N*3;i+=3){a.array[i]+=.004*sp*(1+kick*10);if(a.array[i]>4)a.array[i]=-4}a.needsUpdate=true;
   rc.setFromCamera(ms,cam);const h=rc.intersectObjects(hit,false)[0];hv=h?h.object:null;cv.style.cursor=hv?'pointer':'default';
-  cam.position.lerp(new THREE.Vector3(pos.x+ms.x*.5,pos.y+ms.y*.3,pos.z),.045);lk.lerp(look,.05);
-  if(kick>.01){kick*=.93;cam.fov=(cam.aspect<.9?60:42)+kick*7;cam.updateProjectionMatrix();cam.up.set(Math.sin(kick*.12),1,0);scan.scale.setScalar(1+kick*.3);l1.intensity=1.6+kick*2}else cam.up.set(0,1,0);
+  const por=cam.aspect<1&&cur>0?-1.7:0,tp=pos.clone().sub(look).multiplyScalar(fit).add(look);cam.position.lerp(new THREE.Vector3(tp.x+ms.x*.5,tp.y+ms.y*.3+por,tp.z),.045);lk.lerp(new THREE.Vector3(look.x,look.y+por,look.z),.05);
+  if(kick>.01){kick*=.93;cam.fov=(cam.aspect<1?50:42)+kick*7;cam.updateProjectionMatrix();cam.up.set(Math.sin(kick*.12),1,0);scan.scale.setScalar(1+kick*.3);l1.intensity=1.6+kick*2}else cam.up.set(0,1,0);
   cam.lookAt(lk);R.render(sc,cam)}
  tick()}

@@ -2,8 +2,8 @@
 body.ov{--cy:#ffc27a;--mn:#ff9a4d;--ln:rgba(255,178,100,.34)}
 *{box-sizing:border-box;margin:0}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{height:100%;background:radial-gradient(ellipse at 50% 40%,#0a2630,var(--bg) 70%);color:var(--tx);font:400 14px/1.5 'Chakra Petch',system-ui,sans-serif;overflow:hidden;color-scheme:dark}
-.mono{font-family:'Share Tech Mono',ui-monospace,monospace}
+body{height:100%;background:radial-gradient(ellipse at 50% 40%,#0a2630,var(--bg) 70%);color:var(--tx);font:400 14px/1.5 'Barlow Condensed',system-ui,sans-serif;overflow:hidden;color-scheme:dark}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
 button,a{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--am);outline-offset:2px}
 #app{display:grid;height:100%;gap:10px;padding:10px;grid-template:"h h h" 56px "n s r" 1fr "f f f" 30px/214px 1fr 270px}
@@ -18,11 +18,11 @@ button,a{font:inherit;color:inherit;cursor:pointer}
 #nav{grid-area:n;padding:14px 10px;display:flex;flex-direction:column;gap:6px;overflow:auto}
 #nav h2,#rp h2{font-size:11px;color:var(--am);letter-spacing:.14em;font-weight:600;margin:0 4px 8px}
 #nav button{display:flex;gap:10px;align-items:center;background:none;border:1px solid transparent;padding:11px 10px;text-align:left;font-size:12px;letter-spacing:.1em;color:var(--dim);transition:.2s;white-space:nowrap}
-#nav button i{font-style:normal;color:var(--am);font-family:'Share Tech Mono',monospace}
+#nav button i{font-style:normal;color:var(--am);font-family:'IBM Plex Mono',monospace}
 #nav button:hover{color:var(--tx);border-color:var(--ln);transform:translateX(4px)}
 #nav button[aria-current=page]{color:var(--cy);border-color:var(--cy);background:rgba(111,245,224,.1)}
 #ovr{margin-top:auto;padding:10px 4px 0;font-size:11px;color:var(--dim)}
-#ovr form{display:flex;gap:4px;margin-top:6px}#ovr input{flex:1;min-width:0;background:#000a;border:1px solid var(--ln);color:var(--tx);padding:7px;font:12px 'Share Tech Mono',monospace}
+#ovr form{display:flex;gap:4px;margin-top:6px}#ovr input{flex:1;min-width:0;background:#000a;border:1px solid var(--ln);color:var(--tx);padding:7px;font:12px 'IBM Plex Mono',monospace}
 #ovr button{border:1px solid var(--cy);background:none;padding:0 10px}
 #stage{grid-area:s;overflow:hidden;background:#02080c}
 #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -51,7 +51,7 @@ button,a{font:inherit;color:inherit;cursor:pointer}
 #pr{height:4px;background:#ffffff18;flex:1;cursor:pointer}#pr i{display:block;height:100%;width:0;background:var(--cy)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .tile{border:1px solid var(--ln);background:#031017;aspect-ratio:1;padding:0;position:relative;overflow:hidden}
-.tile svg{width:100%;height:100%}.tile em{position:absolute;left:6px;bottom:4px;font:10px 'Share Tech Mono',monospace;color:var(--am);font-style:normal}
+.tile svg{width:100%;height:100%}.tile em{position:absolute;left:6px;bottom:4px;font:10px 'IBM Plex Mono',monospace;color:var(--am);font-style:normal}
 .tile:hover{border-color:var(--cy)}
 .vid{aspect-ratio:16/9;border:1px solid var(--ln);display:grid;place-items:center;color:var(--dim);margin-bottom:10px;font-size:12px;background:repeating-linear-gradient(45deg,#06161c,#06161c 10px,#082028 10px 20px)}
 .vid iframe{width:100%;height:100%;border:0}
@@ -96,3 +96,31 @@ body.nogl #gl{display:none}body.glitch #app{animation:gl .15s 6}@keyframes gl{50
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
 
 a.trk{text-decoration:none}.bc{border:0;width:100%;height:120px;margin-bottom:8px;background:transparent;color-scheme:normal}#tl{text-transform:uppercase;transition:opacity .5s;min-height:2.6em}
+body.ice{--cy:#b8d8ff;--mn:#8fb4ff;--ln:rgba(160,200,255,.3)}
+.snd{background:none;border:1px solid var(--ln);padding:3px 10px;color:var(--cy);font-size:11px}.snd[aria-pressed=true]{border-color:var(--am);color:var(--am)}
+@keyframes up{from{opacity:0;transform:translateY(10px)}}.sec>*{animation:up .45s both}.sec>*:nth-child(n+3){animation-delay:.08s}.sec>*:nth-child(n+6){animation-delay:.16s}
+
+/* --- v2.5 look: type, buttons, grain, mobile --- */
+body{font-size:15px}
+.hero h1,#hd b,.sec h2,.cart h3{font-family:'Shippori Mincho B1',Georgia,'Times New Roman',serif;font-weight:800}
+.hero h1{letter-spacing:.03em;text-shadow:none;font-size:clamp(34px,6vw,72px)}
+#hd b{font-size:22px;letter-spacing:.05em}
+.sec h2{font-size:30px;letter-spacing:.02em}.cart h3{font-size:22px}
+#nav button{font-size:17px;font-weight:500;letter-spacing:.03em}
+.hero p,#tl{letter-spacing:.05em;font-size:16px}.hero .wm{letter-spacing:.12em;font-size:12px}
+.sub,.note{letter-spacing:.06em}
+.b{border:1px solid var(--tx);background:transparent;font-size:15px;font-weight:500;letter-spacing:.07em;padding:10px 24px;text-transform:uppercase}
+.b:hover{background:var(--tx);color:#031017;box-shadow:none}
+.b.a{background:var(--am);border-color:var(--am);color:#1a0a00;font-weight:600}.b.a:hover{background:#ffb27a;color:#1a0a00}
+#stage{box-shadow:inset 0 0 120px rgba(0,0,0,.55)}
+#stage::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.08;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@supports(height:100dvh){html,body{height:100dvh}}
+@media(min-width:701px){.hero{align-items:flex-start;text-align:left;padding:30px 38px}.btns{justify-content:flex-start}}
+@keyframes su{from{opacity:0;transform:translateY(30px)}}
+@media(max-width:700px){
+#hd{padding:0 10px}#hd b{font-size:17px}#hd small{font-size:9px;letter-spacing:.08em}
+.st .guest{display:none}.snd{padding:3px 8px;font-size:10px}
+#view{display:flex;flex-direction:column;justify-content:flex-end}
+.sec{height:auto;max-height:72%;border-left:0;border-top:1px solid var(--ln);animation:su .4s}
+.hero{align-items:center;text-align:center;padding:16px 10px}.btns{justify-content:center}.hero h1{font-size:clamp(28px,9vw,44px)}
+}

@@ -10,5 +10,5 @@ const C={
  secretArt:{t:'Hidden artwork slot',credit:null,src:null},
  videos:[1,2,3].map(i=>({t:'Video slot '+i,embed:null,link:null})),
  nodes:[{l:'Bandcamp artist page',d:'Frostnova.sys · Arizona',u:'https://frostnovasys.bandcamp.com'},{l:'Photonic Cascade',d:'Album on Bandcamp',u:'https://frostnovasys.bandcamp.com/album/photonic-cascade'},{l:'frostnova.tech',d:'Official site entrance',u:'https://frostnova.tech'},{l:'Contact',d:'Bandcamp message form',u:'https://frostnovasys.bandcamp.com/contact?b=799519576&amp;n=Frostnova.sys'},{l:'Instagram',d:'Handle pending'},{l:'YouTube',d:'Channel pending'},{l:'Spotify / streaming',d:'Links pending'}],
- codes:{FROSTNOVA:'ov',NOVA:'ov',SARA:'art'}
+ codes:{FROSTNOVA:'ov',NOVA:'ov',SUNRISE:'ov',SARA:'art',HORIZON:'hz',FROST:'ice'}
 };
