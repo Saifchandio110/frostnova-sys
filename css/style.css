@@ -127,3 +127,15 @@ body{font-size:15px}
 }
 
 #stage{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.sec{-webkit-user-select:text;user-select:text}#gl{touch-action:manipulation}
+
+.xm{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:2}
+.xm>*{pointer-events:auto}
+.xmb{background:rgba(3,10,15,.6);border:1px solid var(--cy);color:var(--cy);padding:12px 26px;font-size:16px;font-weight:600;letter-spacing:.1em;backdrop-filter:blur(4px);white-space:nowrap}
+.xmb:hover{background:var(--cy);color:#031017}
+.xm small{font-size:11px;letter-spacing:.14em;color:var(--dim)}
+@keyframes xp{50%{box-shadow:0 0 18px rgba(255,138,61,.45)}}
+body.xm-on .xmb{border-color:var(--am);color:var(--am);animation:xp 1.4s infinite}
+body.xm-on .eq i{animation-duration:.7s;opacity:1}
+.xdock{position:absolute;left:50%;bottom:170px;transform:translateX(-50%);width:min(520px,92%);z-index:5;background:rgba(3,12,16,.94);border:1px solid var(--cy);padding:8px}
+.xdock .bc{margin:0;height:120px;display:block}.xdock p{margin:6px 4px 0;font-size:12px;color:var(--dim)}
+@media(max-width:700px){.xdock{bottom:auto;top:44px}.xm{bottom:84px}}
