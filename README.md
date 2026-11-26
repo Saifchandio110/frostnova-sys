@@ -26,3 +26,9 @@ Cover art, track titles and audio, artwork and credits, video embeds, biography,
 - `js/sound.js`: optional UI blips (SOUND toggle in header, off by default).
 - Extra secret codes: `SUNRISE` (amber), `HORIZON` (message), `FROST` (ice theme). Edit in `C.codes`.
 - If 3D fails, the site still runs in simplified mode.
+
+## Testing
+See `docs/test-checklist.md`. Add `?debug=1` to the URL for an on-screen FPS and error box (handy on phones).
+
+## Not yet included
+The Supabase admin panel for Sara is built separately and will be added once the public site is finished.
