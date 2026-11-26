@@ -6,8 +6,6 @@ const C={
   art:'https://f4.bcbits.com/img/a2888557678_7.jpg',released:'25 Dec 2025',desc:'First EP with bonus tracks',tags:['chiptune','electronic','synthwave'],
   tracks:[['Abject Mechanism','03:39','abject-mechanism'],['Voxnominal Wave','01:25','voxnominal-wave'],['Phase Capacitance','02:32','phase-capacitance'],['Mourning Doll','01:53','mourning-doll'],['ESD (Electrostatic Disassociation)','02:26','esd-electrostatic-disassociation']].map((t,i)=>({n:i+1,title:t[0],len:t[1],url:'https://frostnovasys.bandcamp.com/track/'+t[2],src:null}))},
  site:'https://frostnova.tech',
- featured:{title:'Photonic Cascade',src:null},
- members:Array.from({length:7},(_,i)=>({n:i+1,name:null,role:null})),
  gallery:Array.from({length:6},(_,i)=>({t:'Artwork slot '+(i+1),credit:null,src:null})),
  secretArt:{t:'Hidden artwork slot',credit:null,src:null},
  videos:[1,2,3].map(i=>({t:'Video slot '+i,embed:null,link:null})),
