@@ -47,7 +47,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  window.setPose=s=>{pos.set(...s.cam);look.set(...s.look);kick=1};
  const ms=new THREE.Vector2(),rc=new THREE.Raycaster();let hv=null,pulse=0,kick=0,fit=1;
  ['pointermove','pointerdown'].forEach(n=>st.addEventListener(n,e=>{const b=st.getBoundingClientRect();ms.set((e.clientX-b.left)/b.width*2-1,-((e.clientY-b.top)/b.height)*2+1)}));
- st.addEventListener('click',e=>{if(e.target!==cv)return;if(hv){pulse=1;if(hv.userData.go)go(hv.userData.go);else toast('UNIT 07 // FROSTNOVA.SYS CORE RESPONDS')}});
+ st.addEventListener('click',e=>{if(e.target!==cv)return;if(hv){pulse=1;if(hv.userData.go)go(hv.userData.go);else coreSay()}});
  function size(){const w=st.clientWidth,h=st.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;fit=cam.aspect<1?Math.max(1,1.2/cam.aspect):1;sc.fog.density=.06/fit;cam.fov=cam.aspect<1?50:42;cam.updateProjectionMatrix()}
  new ResizeObserver(size).observe(st);size();
  let on=true;document.addEventListener('visibilitychange',()=>{on=!document.hidden;if(on)tick()});
@@ -55,7 +55,7 @@ function init3D(){const cv=$('#gl'),st=$('#stage');
  function tick(){if(!on)return;requestAnimationFrame(tick);const nw=performance.now(),dd=nw-lt;lt=nw;slow=dd>34?slow+1:Math.max(0,slow-1);if(slow>90&&R.getPixelRatio()>1.5){R.setPixelRatio(1.5);size()}const t=clock.getElapsedTime()*sp,dt=Math.min(clock.getDelta(),.05);
   mech.position.y=Math.sin(t*1.1)*.07;mech.rotation.y+=((ms.x*.35)-mech.rotation.y)*.05;head.rotation.x=ms.y*-.08;
   r1.rotation.z=t*.15;r2.rotation.z=-t*.1;scan.position.y=1+Math.sin(t*.8)*1.5;holo.children.forEach(m=>m.material.opacity=.45);
-  cr.rotation.y=t*2;core.emissiveIntensity=.8+Math.sin(t*3)*.4+pulse*2;vis.emissiveIntensity=.8+pulse*2+(hv===head?.8:0);pulse*=.94;hl.rotation.z=t*.3;hv1.material.opacity=.55+Math.sin(t*2)*.1+pulse*.4;hv2.material.opacity=.5+Math.sin(t*3)*.25;orb.rotation.y=t*.2;
+  cr.rotation.y=t*2;core.emissiveIntensity=.8+Math.sin(t*3)*.4+pulse*.7;vis.emissiveIntensity=.8+pulse*.7+(hv===head?.3:0);pulse*=.94;hl.rotation.z=t*.3;hv1.material.opacity=.55+Math.sin(t*2)*.1+pulse*.12;hv2.material.opacity=.5+Math.sin(t*3)*.25;orb.rotation.y=t*.2;
   tags.forEach((m,i)=>{m.position.y=m.userData.p[1]+Math.sin(t+i*2)*.12;m.lookAt(cam.position);m.material.opacity=hv===m?.35:.1});
   const a=pg.attributes.position;for(let i=1;i<N*3;i+=3){a.array[i]+=.004*sp*(1+kick*10);if(a.array[i]>4)a.array[i]=-4}a.needsUpdate=true;
   rc.setFromCamera(ms,cam);const h=rc.intersectObjects(hit,false)[0];hv=h?h.object:null;cv.style.cursor=hv?'pointer':'default';
