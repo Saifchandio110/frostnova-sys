@@ -125,3 +125,5 @@ body{font-size:15px}
 .sec{height:auto;max-height:72%;border-left:0;border-top:1px solid var(--ln);animation:su .4s}
 .hero{align-items:center;text-align:center;padding:16px 10px}.btns{justify-content:center}.hero h1{font-size:clamp(28px,9vw,44px)}
 }
+
+#stage{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}.sec{-webkit-user-select:text;user-select:text}#gl{touch-action:manipulation}
