@@ -8,3 +8,5 @@ All editable content is in `js/content.js`.
 5. Secret codes: `codes` (SARA = hidden artwork slot, FROSTNOVA/NOVA = amber theme). Konami code also unlocks the hidden slot.
 6. Text sections (Profile, placeholder notes) are in `js/app.js` inside the `S` array.
 7. 3D mech: `js/scene.js`. Replace the procedural parts with a GLTF model when client assets exist.
+
+8. Featured track button (PLAY TRANSMISSION): set `featured.src` in `js/content.js` (e.g. 'assets/audio/featured.mp3', a full track or a 30-60 second preview supplied by the artist) for real play/pause. Without a file, the button opens the official Bandcamp player instead.

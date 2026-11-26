@@ -19,3 +19,10 @@ Tip: add `?debug=1` to the site address (e.g. `.../frostnova-sys/?debug=1`) to s
 - [ ] Sections slide up as a bottom sheet; mech stays visible above it
 - [ ] Bottom nav strip scrolls sideways; header fits (logo + SOUND button)
 - [ ] Stays smooth (use ?debug=1: aim for 30+ FPS)
+
+## Transmission button (centre of the home screen)
+- [ ] Music never starts by itself
+- [ ] No audio file yet: click opens the Bandcamp player dock, click again closes it and stops the music
+- [ ] With featured.src set: click plays, label becomes PAUSE TRANSMISSION, click again pauses
+- [ ] While live: button turns amber, rings spin faster, spectrum speeds up, log shows a line
+- [ ] Music keeps playing when you switch sections
